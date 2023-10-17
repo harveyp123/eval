@@ -19,10 +19,10 @@ from azure import azure_complete
 from prompts import (
     gpt4_prompt, 
     gpt_3_5_prompt, 
-    azure_prompt,
-    claude_prompt
+    azure_prompt
+    # , claude_prompt
 )
-from claude import claude_complete
+# from claude import claude_complete
 
 load_dotenv()
 
@@ -46,7 +46,7 @@ async def retry(sem, fn):
 
     return await fn()
 
-async def get_completion(sem, prompt, num_tries=1, model='code-davinci-002', num_errors=0):
+async def get_completion(sem, prompt, num_tries=1, model='gpt-3.5-turbo', num_errors=0):
     #print(num_tries)
     if num_tries == 1:
         temperature = 0.0
@@ -160,7 +160,7 @@ def remove_bloat(in_jsonl):
 if __name__ == '__main__':
     num_tries=1
     # model = 'gpt-4'
-    model = 'azure-gpt-3.5-turbo'
+    model = 'gpt-3.5-turbo'
     # model = 'claude-v1.3'
     # model = 'claude-instant-v1.1'
     # model = 'gpt-3.5-turbo'
